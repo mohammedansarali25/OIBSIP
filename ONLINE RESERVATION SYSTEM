@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+// Class to represent a Reservation
+class Reservation {
+    String trainNumber;
+    String trainName;
+    String classType;
+    String dateOfJourney;
+    String from;
+    String to;
+
+    // Constructor
+    public Reservation(String trainNumber, String trainName, String classType, String dateOfJourney, String from, String to) {
+        this.trainNumber = trainNumber;
+        this.trainName = trainName;
+        this.classType = classType;
+        this.dateOfJourney = dateOfJourney;
+        this.from = from;
+        this.to = to;
+    }
+}
+
+// Class to manage the reservation system
+class ReservationSystem {
+    // Method to make a reservation
+    public Reservation makeReservation(String trainNumber, String classType, String dateOfJourney, String from, String to) {
+        // Assuming train name is fetched based on train number
+        String trainName = getTrainName(trainNumber);
+        
+        // Saving reservation details to database (not implemented)
+        // Returning a reservation object for demonstration
+        return new Reservation(trainNumber, trainName, classType, dateOfJourney, from, to);
+    }
+
+    // Method to cancel a reservation
+    public void cancelReservation(String pnrNumber) {
+        // Fetch reservation details from database based on PNR number (not implemented)
+        // Display reservation details and ask for confirmation
+        // Cancel reservation in database (not implemented)
+        System.out.println("Reservation with PNR number " + pnrNumber + " has been cancelled.");
+    }
+
+    // Method to fetch train name based on train number (dummy implementation)
+    private String getTrainName(String trainNumber) {
+        // Dummy implementation, replace with actual logic to fetch train name from database
+        return "Dummy Train Name";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ReservationSystem reservationSystem = new ReservationSystem();
+
+        // Dummy user authentication (replace with actual authentication logic)
+        System.out.print("Enter username: ");
+        String username = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String password = scanner.nextLine();
+
+        // Assuming authentication is successful
+        System.out.println("Authentication successful!");
+
+        // Reservation module
+        System.out.println("Reservation Form:");
+        System.out.print("Enter train number: ");
+        String trainNumber = scanner.nextLine();
+        System.out.print("Enter class type: ");
+        String classType = scanner.nextLine();
+        System.out.print("Enter date of journey: ");
+        String dateOfJourney = scanner.nextLine();
+        System.out.print("Enter source station: ");
+        String from = scanner.nextLine();
+        System.out.print("Enter destination station: ");
+        String to = scanner.nextLine();
+
+        // Make reservation
+        Reservation reservation = reservationSystem.makeReservation(trainNumber, classType, dateOfJourney, from, to);
+        System.out.println("Reservation successful! Details: ");
+        System.out.println("Train Number: " + reservation.trainNumber);
+        System.out.println("Train Name: " + reservation.trainName);
+        System.out.println("Class Type: " + reservation.classType);
+        System.out.println("Date of Journey: " + reservation.dateOfJourney);
+        System.out.println("From: " + reservation.from);
+        System.out.println("To: " + reservation.to);
+
+        // Cancellation module
+        System.out.println("\nCancellation Form:");
+        System.out.print("Enter PNR number to cancel reservation: ");
+        String pnrNumber = scanner.nextLine();
+        reservationSystem.cancelReservation(pnrNumber);
+
+        scanner.close();
+    }
+}
